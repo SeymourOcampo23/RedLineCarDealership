@@ -23,7 +23,7 @@
 
         do
         {
-            Console.WriteLine("\n\nPlease enter the number of the option deseared");
+            Console.WriteLine("\n\nPlease enter the number of the option desired:  ");
             Console.WriteLine(" 1. Add vehicle\n 2. Update vehicle\n 3. Delete vehicle\n 4. Search Vehicles by ID\n 5. Search vehicle by category\n 6. Generate reports \n 7. Settings \n 0. Exit\n");
             option = Convert.ToInt32(Console.ReadLine());
             if (isInteger = validationInt(option))            //Here should be a validation that the input entered is an integer
@@ -80,7 +80,7 @@
                         }
                         else
                         {
-                            Console.WriteLine("Please enter in uppercase the letter of the vehicle category\\n - (S) sedan\\n - (P) Sport\\n - (C) Convertible\\n - (V) Van\\n - (L) Luxury\"");
+                            Console.WriteLine("Please enter in uppercase the letter of the vehicle category\\n - (S) sedan\\n - (P) Sport\\n - (C) Convertible\\n - (V) Van\\n - (L) Luxury\": ");
                             char searchChar = char.Parse(Console.ReadLine());
                             SearchVehicleCategory(searchChar);
                             break;
@@ -301,22 +301,22 @@
             do
             {
                 Console.WriteLine("To add a new item into the steck you need the follow data\n - Maker\n - Model\n - Manufacture year\n - Price\n - Category\n\n");
-                Console.WriteLine("Please enter the vehicle maker name");
+                Console.WriteLine("Please enter vehicle make: ");
                 vehicle_Make[stock] = Console.ReadLine();
-                Console.WriteLine("Please enter the vehicle model");
+                Console.WriteLine("Please enter the vehicle model: ");
                 vehicle_Model[stock] = Console.ReadLine();
 
-                string Q_year = "Please enter the vehicle manufacture year";
+                string Q_year = "Please enter the vehicle manufacture year: ";
                 int year = Var_verify(1, Q_year);
                 vehicle_Year[stock] = year;
 
-                string Q_price = "Please enter the vehicle price";
+                string Q_price = "Please enter the vehicle price: ";
                 double mountPrice = Var_verify(2, Q_price);
                 price[stock] = mountPrice;
 
 
 
-                string Q_Cat = "Please enter in uppercase the letter of the vehicle category\n - (S) sedan\n - (P) Sport\n - (C) Convertible\n - (V) Van\n - (L) Luxury";
+                string Q_Cat = "Please enter in uppercase the letter of the vehicle category\n - (S) sedan\n - (P) Sport\n - (C) Convertible\n - (V) Van\n - (L) Luxury: ";
                 do
                 {
                     category = Var_verify(3, Q_Cat);
@@ -341,7 +341,7 @@
                 {
                     do
                     {
-                        Console.WriteLine("Do you want to add another item? Yes/No");
+                        Console.WriteLine("Do you want to add another item? Yes/No: ");
                         moreItemAnswer = Console.ReadLine();
                         if ((moreItemAnswer.ToUpper() == "YES") || (moreItemAnswer.ToUpper() == "NO"))
                         {
@@ -491,9 +491,9 @@
         bool valid = true;
         do
         {
-            Console.WriteLine("Please choose method to choose vehicle!");
-            Console.WriteLine("1) ID");
-            Console.WriteLine("2) Make");
+            Console.WriteLine("Please choose: ");
+            Console.WriteLine("1) Search by ID");
+            Console.WriteLine("2) Search by Make");
             string Choose = Console.ReadLine();
 
 
@@ -505,7 +505,7 @@
                 while (valid)
                 {
                     Console.Clear();
-                    string Q_ID = "Please enter the ID of the vehicle!!    | type 0 to exit";
+                    string Q_ID = "Please enter the ID of the vehicle:    | type 0 to exit";
                     int User_ID = Var_verify(1, Q_ID);
 
                     if (User_ID == 0)
@@ -693,7 +693,7 @@
                     break;
                 case "5":
                     char cat;
-                    string Q_char = "What would you like to change Category to: \ncategorys:\n - (S) sedan\n - (P) Sport\n - (C) Convertible\n - (V) Van\n - (L) Luxury\n";
+                    string Q_char = "What would you like to change Category to: \ncategorys:\n - (S) sedan\n - (P) Sport\n - (C) Convertible\n - (V) Van\n - (L) Luxury\n: ";
                  
                         do
                     {
