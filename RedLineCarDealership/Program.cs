@@ -13,7 +13,7 @@
     static void Main(string[] args)
     {
 
-        Console.Title = "RedLine Dealership";
+        Console.Title = "RedLine Car Dealership Inventory Tracker";
 
 
         Vehicle_test();
@@ -23,15 +23,13 @@
 
         do
         {
-            Console.WriteLine("\n\nPlease enter the number of the option deseared");
-            Console.WriteLine(" 1. Add vehicle\n 2. Update vehicle\n 3. Delete vehicle\n 4. Search Vehicles by ID\n 5. Search vehicle by category\n 6. Generate reports \n 7. Settings \n 0. Exit\n");
-            option = Convert.ToInt32(Console.ReadLine());
-            if (isInteger = validationInt(option))            //Here should be a validation that the input entered is an integer
+            string Q_year = "Please enter the number of the desired option: \n 1. Add vehicle\n 2. Update vehicle\n 3. Delete vehicle\n 4. Search Vehicles by ID\n 5. Search vehicle by category\n 6. Generate reports \n 7. Settings \n 0. Exit: \n";
+            option = Var_verify(1, Q_year);
+
+            switch (option)
             {
-                switch (option)
-                {
-                    case 1:
-                        addIVehicle();
+                case 1:
+                    addIVehicle();
 
                     break;
 
@@ -72,22 +70,22 @@
                     break;
 
 
-                    case 5:
-                        if (stock == 0)
-                        {
-                            Console.WriteLine("There are no items in the system. ");
-                            break;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Please enter in uppercase the letter of the vehicle category\\n - (S) sedan\\n - (P) Sport\\n - (C) Convertible\\n - (V) Van\\n - (L) Luxury\"");
-                            char searchChar = char.Parse(Console.ReadLine());
-                            SearchVehicleCategory(searchChar);
-                            break;
-                        }
-                    case 7:
-                        Settings();
+                case 5:
+                    if (stock == 0)
+                    {
+                        Console.WriteLine("There are no items in the system. ");
                         break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please enter in uppercase the letter of the vehicle category\\n - (S) sedan\\n - (P) Sport\\n - (C) Convertible\\n - (V) Van\\n - (L) Luxury: \"");
+                        char searchChar = char.Parse(Console.ReadLine());
+                        SearchVehicleCategory(searchChar);
+                        break;
+                    }
+                case 7:
+                    Settings();
+                    break;
 
                 default:
                     Console.WriteLine("The option entered does not exist, please check the available options and select one.\n");
@@ -170,8 +168,6 @@
         Console.WriteLine("\n\nPress any key to continue");
         Console.ReadKey();
         Console.Clear();
-        Console.WriteLine("\r\n  ____          _   _     _               ____             ____             _               _     _       \r\n |  _ \\ ___  __| | | |   (_)_ __   ___   / ___|__ _ _ __  |  _ \\  ___  __ _| | ___ _ __ ___| |__ (_)_ __  \r\n | |_) / _ \\/ _` | | |   | | '_ \\ / _ \\ | |   / _` | '__| | | | |/ _ \\/ _` | |/ _ \\ '__/ __| '_ \\| | '_ \\ \r\n |  _ <  __/ (_| | | |___| | | | |  __/ | |__| (_| | |    | |_| |  __/ (_| | |  __/ |  \\__ \\ | | | | |_) |\r\n |_| \\_\\___|\\__,_| |_____|_|_| |_|\\___|  \\____\\__,_|_|    |____/ \\___|\\__,_|_|\\___|_|  |___/_| |_|_| .__/ \r\n                                                                                                   |_|    \r\n");
-
     }
 
     static public void Vehicle_test()
@@ -284,8 +280,8 @@
         {
             do
             {
-                Console.WriteLine("To add a new item into the steck you need the follow data\n - Maker\n - Model\n - Manufacture year\n - Price\n - Category\n\n");
-                Console.WriteLine("Please enter vehicle make: ");
+                Console.WriteLine("To add a new item into the steck you need the follow data\n - Maker\n - Model\n - Manufacture year\n - Price\n - Category: \n\n");
+                Console.WriteLine("Please enter the vehicle make: ");
                 vehicle_Make[stock] = Console.ReadLine();
                 Console.WriteLine("Please enter the vehicle model: ");
                 vehicle_Model[stock] = Console.ReadLine();
@@ -300,7 +296,7 @@
 
 
 
-                string Q_Cat = "Please enter in uppercase the letter of the vehicle category\n - (S) sedan\n - (P) Sport\n - (C) Convertible\n - (V) Van\n - (L) Luxury: ";
+                string Q_Cat = "Please enter in uppercase the letter of the vehicle category\n - (S) sedan\n - (P) Sport\n - (C) Convertible\n - (V) Van\n - (L) Luxury";
                 do
                 {
                     category = Var_verify(3, Q_Cat);
@@ -352,15 +348,16 @@
 
     static void SearchVehicleId(int id)
     {
+ 
         int index = Array.IndexOf(vehicle_IDs, id, 0, stock);
         if (index != -1)
         {
-
             Console.WriteLine($"Make: {vehicle_Make[index]}");
             Console.WriteLine($"Model: {vehicle_Year[index]}");
             Console.WriteLine($"Year: {vehicle_Year[index]}");
             Console.WriteLine($"Price: {price[index]}");
             Console.WriteLine($"Category: {Category[index]}");
+  
         }
         else
         {
@@ -466,7 +463,7 @@
                 while (valid)
                 {
                     Console.Clear();
-                    string Q_ID = "Please enter the ID of the vehicle:    | type 0 to exit";
+                    string Q_ID = "Please enter the ID of the vehicle:     | type 0 to exit";
                     int User_ID = Var_verify(1, Q_ID);
 
                     if (User_ID == 0)
@@ -484,7 +481,7 @@
                     else
                     {
                         Console.WriteLine("Please retry!");
-                        Console.WriteLine("Press any key to contunie");
+                        Console.WriteLine("Press any key to continue.");
                         Console.ReadKey();
                         Console.Clear();
                     }
@@ -536,7 +533,7 @@
                     {
 
                         Console.Clear();
-                        Console.WriteLine("Car Search list");
+                        Console.WriteLine("Car Search list: ");
                         for (int i = 0; i < y2; i++)
                         {
                             int temp = Make_Temp[i];
@@ -569,7 +566,7 @@
             {
                 Console.WriteLine("\n\nPlease retry entery!");
 
-                Console.WriteLine("Press any key to continue!");
+                Console.WriteLine("Press any key to continue.");
                 Console.ReadKey();
                 Console.Clear();
             }
@@ -652,9 +649,8 @@
                     break;
                 case "5":
                     char cat;
-                    string Q_char = "What would you like to change Category to: \ncategorys:\n - (S) sedan\n - (P) Sport\n - (C) Convertible\n - (V) Van\n - (L) Luxury\n: ";
-                 
-                        do
+                    string Q_char = "What would you like to change model to: ";
+                    do
                     {
                         cat = Var_verify(3, Q_char);
                     } while (cat != 'S' && cat != 'P' && cat != 'C' && cat != 'V' && cat != 'L');
