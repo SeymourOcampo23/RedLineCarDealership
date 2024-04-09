@@ -445,7 +445,7 @@
     {
 
         char[] CategorySymbol = { 'S', 'P', 'C', 'V', 'L' };
-        string[] CorrespondingCategory = { "SUV", "Sports car", "Sedan", "Station wagon", "Hatchback" };
+        string[] CorrespondingCategory = { "Sedan", "Sport", "Convertible", "Van", "Luxury"};
 
         Console.WriteLine("------------------[ STOCK REPORT ]------------------");
         Console.WriteLine($"Current stock = {stock}\n");
