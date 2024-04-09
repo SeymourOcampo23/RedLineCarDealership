@@ -29,7 +29,7 @@
             if (isInteger = validationInt(option))            //Here should be a validation that the input entered is an integer
             {
                 switch (option)
-                {
+                {   
                     case 1:
                         addIVehicle();
 
@@ -179,6 +179,8 @@
         Console.WriteLine("\n\nPress any key to continue");
         Console.ReadKey();
         Console.Clear();
+        Console.WriteLine("\r\n  ____          _   _     _               ____             ____             _               _     _       \r\n |  _ \\ ___  __| | | |   (_)_ __   ___   / ___|__ _ _ __  |  _ \\  ___  __ _| | ___ _ __ ___| |__ (_)_ __  \r\n | |_) / _ \\/ _` | | |   | | '_ \\ / _ \\ | |   / _` | '__| | | | |/ _ \\/ _` | |/ _ \\ '__/ __| '_ \\| | '_ \\ \r\n |  _ <  __/ (_| | | |___| | | | |  __/ | |__| (_| | |    | |_| |  __/ (_| | |  __/ |  \\__ \\ | | | | |_) |\r\n |_| \\_\\___|\\__,_| |_____|_|_| |_|\\___|  \\____\\__,_|_|    |____/ \\___|\\__,_|_|\\___|_|  |___/_| |_|_| .__/ \r\n                                                                                                   |_|    \r\n");
+
     }
 
 
@@ -691,8 +693,9 @@
                     break;
                 case "5":
                     char cat;
-                    string Q_char = "What would you like to change model to: ";
-                    do
+                    string Q_char = "What would you like to change Category to: \ncategorys:\n - (S) sedan\n - (P) Sport\n - (C) Convertible\n - (V) Van\n - (L) Luxury\n";
+                 
+                        do
                     {
                         cat = Var_verify(3, Q_char);
                     } while (cat != 'S' && cat != 'P' && cat != 'C' && cat != 'V' && cat != 'L');
