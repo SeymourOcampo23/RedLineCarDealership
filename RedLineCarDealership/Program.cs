@@ -23,90 +23,79 @@
 
         do
         {
-            Console.WriteLine("\n\nPlease enter the number of the option deseared");
-            Console.WriteLine(" 1. Add vehicle\n 2. Update vehicle\n 3. Delete vehicle\n 4. Search Vehicles by ID\n 5. Search vehicle by category\n 6. Generate reports \n 7. Settings \n 0. Exit\n");
-            option = Convert.ToInt32(Console.ReadLine());
-            if (isInteger = validationInt(option))            //Here should be a validation that the input entered is an integer
+            string Q_year = "Please enter the number of the option deseared\n 1. Add vehicle\n 2. Update vehicle\n 3. Delete vehicle\n 4. Search Vehicles by ID\n 5. Search vehicle by category\n 6. Generate reports \n 7. Settings \n 0. Exit\n";
+            option = Var_verify(1, Q_year);
+
+            switch (option)
             {
-                switch (option)
-                {
-                    case 1:
-                        addIVehicle();
+                case 1:
+                    addIVehicle();
 
+                    break;
+
+
+                case 2:
+
+                    Vehicle_update();
+                    break;
+
+
+                case 3:
+                    DeleteVehicle();
+                    break;
+
+
+                case 4:
+                    if (stock == 0)
+                    {
+                        Console.WriteLine("There are no vehicles in the system!");
                         break;
-
-
-                    case 2:
-
-                        Vehicle_update();
+                    }
+                    else
+                    {
+                        Console.Write("Enter vehicle ID: ");
+                        int id = int.Parse(Console.ReadLine());
+                        SearchVehicleId(id);
                         break;
+                    }
 
 
-                    case 3:
-                        DeleteVehicle();
+                case 0:
+                    exit = false;
+                    break;
+
+
+                case 6:
+                    GenerateReports();
+                    break;
+
+
+                case 5:
+                    if (stock == 0)
+                    {
+                        Console.WriteLine("There are no items in the system. ");
                         break;
-
-
-                    case 4:
-                        if (stock == 0)
-                        {
-                            Console.WriteLine("There are no vehicles in the system!");
-                            break;
-                        }
-                        else
-                        {
-                            Console.Write("Enter vehicle ID: ");
-                            int id = int.Parse(Console.ReadLine());
-                            SearchVehicleId(id);
-                            break;
-                        }
-
-
-                    case 0:
-                        exit = false;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please enter in uppercase the letter of the vehicle category\\n - (S) sedan\\n - (P) Sport\\n - (C) Convertible\\n - (V) Van\\n - (L) Luxury\"");
+                        char searchChar = char.Parse(Console.ReadLine());
+                        SearchVehicleCategory(searchChar);
                         break;
+                    }
+                case 7:
+                    Settings();
+                    break;
 
+                default:
+                    Console.WriteLine("The option entered does not exist, please check the available options and select one.\n");
 
-                    case 6:
-                        GenerateReports();
-                        break;
-
-
-                    case 5:
-                        if (stock == 0)
-                        {
-                            Console.WriteLine("There are no items in the system. ");
-                            break;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Please enter in uppercase the letter of the vehicle category\\n - (S) sedan\\n - (P) Sport\\n - (C) Convertible\\n - (V) Van\\n - (L) Luxury\"");
-                            char searchChar = char.Parse(Console.ReadLine());
-                            SearchVehicleCategory(searchChar);
-                            break;
-                        }
-                    case 7:
-                        Settings();
-                        break;
-
-                    default:
-                        Console.WriteLine("The option entered does not exist, please check the available options and select one.\n");
-
-                        break;
-                }
-            }
-            else
-            {
-                Console.WriteLine("The option entered is not a number, please check the available options and enter an option number.\n");
+                    break;
             }
 
         } while (exit);
 
     }
-
-
-
-
 
     public static void Settings()
     {
@@ -180,11 +169,6 @@
         Console.ReadKey();
         Console.Clear();
     }
-
-
-
-
-
 
     static public void Vehicle_test()
     {
@@ -268,8 +252,6 @@
 
 
     }
-
-
 
     static public void Test_ID()
     {
@@ -402,11 +384,6 @@
         }
     }
 
-    static void EditVehicle()
-    {
-
-    }
-
     static void DeleteVehicle()
     {
         if (stock == 0)
@@ -445,7 +422,7 @@
     {
 
         char[] CategorySymbol = { 'S', 'P', 'C', 'V', 'L' };
-        string[] CorrespondingCategory = { "Sedan", "Sport", "Convertible", "Van", "Luxury"};
+        string[] CorrespondingCategory = { "Sedan", "Sport", "Convertible", "Van", "Luxury" };
 
         Console.WriteLine("------------------[ STOCK REPORT ]------------------");
         Console.WriteLine($"Current stock = {stock}\n");
@@ -463,24 +440,6 @@
             Console.WriteLine("■--------------------------------------------------■");
         }
     }
-
-
-    static bool validationInt(int intNumb)
-    {
-        return true;
-    }
-
-    static bool validationDouble(double doubNumb)
-    {
-        return true;
-    }
-    static bool validationChar(char letter)
-    {
-        return false;
-    }
-
-
-
 
     static int Give_Index()
     {
@@ -618,8 +577,6 @@
         return index;
     }
 
-
-
     static public void Vehicle_update()
     {
         int index = 0;
@@ -718,16 +675,6 @@
         Console.Clear();
 
     }
-
-
-
-
-
-
-
-
-
-
 
     public static dynamic Var_verify(int type, string question)
     {
