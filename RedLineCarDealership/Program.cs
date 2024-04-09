@@ -1,4 +1,5 @@
-﻿internal class Program
+﻿
+internal class Program
 {
     static int Invetory = 20, stock = 0;
     static int[] vehicle_IDs = new int[Invetory];
@@ -16,15 +17,16 @@
         Console.Title = "RedLine Car Dealership Inventory Tracker";
 
 
-        Vehicle_test();
         int option;
         bool exit = true, isInteger = false;
-        Console.WriteLine("\r\n  ____          _   _     _               ____             ____             _               _     _       \r\n |  _ \\ ___  __| | | |   (_)_ __   ___   / ___|__ _ _ __  |  _ \\  ___  __ _| | ___ _ __ ___| |__ (_)_ __  \r\n | |_) / _ \\/ _` | | |   | | '_ \\ / _ \\ | |   / _` | '__| | | | |/ _ \\/ _` | |/ _ \\ '__/ __| '_ \\| | '_ \\ \r\n |  _ <  __/ (_| | | |___| | | | |  __/ | |__| (_| | |    | |_| |  __/ (_| | |  __/ |  \\__ \\ | | | | |_) |\r\n |_| \\_\\___|\\__,_| |_____|_|_| |_|\\___|  \\____\\__,_|_|    |____/ \\___|\\__,_|_|\\___|_|  |___/_| |_|_| .__/ \r\n                                                                                                   |_|    \r\n");
-
+       
         do
         {
-            string Q_year = "Please enter the number of the desired option: \n 1. Add vehicle\n 2. Update vehicle\n 3. Delete vehicle\n 4. Search Vehicles by ID\n 5. Search vehicle by category\n 6. Generate reports \n 7. Settings \n 0. Exit: \n";
+            Console.WriteLine("\r\n  ____          _   _     _               ____             ____             _               _     _       \r\n |  _ \\ ___  __| | | |   (_)_ __   ___   / ___|__ _ _ __  |  _ \\  ___  __ _| | ___ _ __ ___| |__ (_)_ __  \r\n | |_) / _ \\/ _` | | |   | | '_ \\ / _ \\ | |   / _` | '__| | | | |/ _ \\/ _` | |/ _ \\ '__/ __| '_ \\| | '_ \\ \r\n |  _ <  __/ (_| | | |___| | | | |  __/ | |__| (_| | |    | |_| |  __/ (_| | |  __/ |  \\__ \\ | | | | |_) |\r\n |_| \\_\\___|\\__,_| |_____|_|_| |_|\\___|  \\____\\__,_|_|    |____/ \\___|\\__,_|_|\\___|_|  |___/_| |_|_| .__/ \r\n                                                                                                   |_|    \r\n");
+
+            string Q_year = "\r\n  ____          _   _     _               ____             ____             _               _     _       \r\n |  _ \\ ___  __| | | |   (_)_ __   ___   / ___|__ _ _ __  |  _ \\  ___  __ _| | ___ _ __ ___| |__ (_)_ __  \r\n | |_) / _ \\/ _` | | |   | | '_ \\ / _ \\ | |   / _` | '__| | | | |/ _ \\/ _` | |/ _ \\ '__/ __| '_ \\| | '_ \\ \r\n |  _ <  __/ (_| | | |___| | | | |  __/ | |__| (_| | |    | |_| |  __/ (_| | |  __/ |  \\__ \\ | | | | |_) |\r\n |_| \\_\\___|\\__,_| |_____|_|_| |_|\\___|  \\____\\__,_|_|    |____/ \\___|\\__,_|_|\\___|_|  |___/_| |_|_| .__/ \r\n                                                                                                   |_|    \r\n\n"+"Please enter the number of the desired option: \n 1. Add vehicle\n 2. Update vehicle\n 3. Delete vehicle\n 4. Search Vehicles by ID\n 5. Search vehicle by category\n 6. Generate reports \n 7. Settings \n 0. Exit: \n";
             option = Var_verify(1, Q_year);
+            Console.Clear();
 
             switch (option)
             {
@@ -53,8 +55,8 @@
                     }
                     else
                     {
-                        Console.Write("Enter vehicle ID: ");
-                        int id = int.Parse(Console.ReadLine());
+                        string q_id = "Enter vehicle ID: ";
+                        int id = Var_verify(1, q_id);
                         SearchVehicleId(id);
                         break;
                     }
@@ -73,18 +75,23 @@
                 case 5:
                     if (stock == 0)
                     {
-                        Console.WriteLine("There are no items in the system. ");
+                        Console.WriteLine("There are no vehicles in the system. ");
                         break;
                     }
                     else
                     {
-                        Console.WriteLine("Please enter in uppercase the letter of the vehicle category\\n - (S) sedan\\n - (P) Sport\\n - (C) Convertible\\n - (V) Van\\n - (L) Luxury: \"");
-                        char searchChar = char.Parse(Console.ReadLine());
+                        string qCategory = "Please enter in uppercase the letter of the vehicle category\\n - (S) sedan\\n - (P) Sport\\n - (C) Convertible\\n - (V) Van\\n - (L) Luxury: \"";
+                        char searchChar = Var_verify(3, qCategory);
                         SearchVehicleCategory(searchChar);
                         break;
                     }
                 case 7:
                     Settings();
+                    break;
+
+                case 8:
+                    Vehicle_test();
+                    Console.WriteLine("Generated 9 sample test cases.");
                     break;
 
                 default:
@@ -264,7 +271,6 @@
         vehicle_IDs[stock] = id;
         stock += 1;
 
-
     }
 
     static void addIVehicle()
@@ -348,7 +354,7 @@
 
     static void SearchVehicleId(int id)
     {
- 
+
         int index = Array.IndexOf(vehicle_IDs, id, 0, stock);
         if (index != -1)
         {
@@ -357,17 +363,19 @@
             Console.WriteLine($"Year: {vehicle_Year[index]}");
             Console.WriteLine($"Price: {price[index]}");
             Console.WriteLine($"Category: {Category[index]}");
-  
+
         }
         else
         {
             Console.WriteLine("Vehicle not found!");
         }
+        Console.WriteLine("\n\n Press any key to continue");
+        Console.ReadKey();
     }
 
     static void SearchVehicleCategory(char searchChar)
     {
-        for (int i = 0; i < Category.Length; i++)
+        for (int i = 0; i < stock; i++)
         {
             if (searchChar != Category[i])
             {
@@ -383,6 +391,8 @@
                 continue;
             }
         }
+        Console.WriteLine("\n\n Press any key to continue");
+        Console.ReadKey();
     }
 
     static void DeleteVehicle()
@@ -393,8 +403,8 @@
             return;
         }
 
-        Console.Write("Enter vehicle ID: ");
-        int id = int.Parse(Console.ReadLine());
+        string question = "Enter vehicle ID: ";
+        int id = Var_verify(1, question);
         int index = Array.IndexOf(vehicle_IDs, id, 0, stock);
 
         if (index == -1)
@@ -440,6 +450,9 @@
             Console.WriteLine($"|{"Category:",-10}{CorrespondingCategory[Array.IndexOf(CategorySymbol, Category[i])],-40}|");
             Console.WriteLine("■--------------------------------------------------■");
         }
+
+        Console.WriteLine("\n\n Press any key to continue");
+        Console.ReadKey();
     }
 
     static int Give_Index()
@@ -678,65 +691,89 @@
     }
 
     public static dynamic Var_verify(int type, string question)
+    /* Ensures that the input given by the user is of type "type" by looping the "question" until the user
+    gives an input that corresponds to the "type" (e.g. code loops through a question until the user input is an integer)*/
     {
 
-
-
-
         bool isValid = false;
-
 
         switch (type)
         {
             case 1:
 
-
                 int Int_output = 0;
 
-                while (!isValid)
+                do
                 {
+                    Console.Clear();
                     Console.WriteLine(question);
                     string user_input = Console.ReadLine();
-
                     isValid = int.TryParse(user_input, out Int_output);
 
-                }
+                    if (Int_output < 0)
+                        isValid = false;
 
-                Console.Clear();
+                    if (!isValid)
+                    {
+                        Console.WriteLine("\n\nError: Input is not a valid number!\nPlease press any key to continue");
+                        Console.ReadKey();
+                    }
+
+                    
+                } while (!isValid);
+
                 return Int_output;
 
-                break;
-
             case 2:
+
                 double Double_output = 0;
 
-                while (!isValid)
+                do
                 {
+                    Console.Clear();
                     Console.WriteLine(question);
                     string user_input = Console.ReadLine();
                     isValid = double.TryParse(user_input, out Double_output);
-                }
 
-                Console.Clear();
+                    if (Double_output < 0)
+                        isValid = false;
+
+                    if (!isValid)
+                    {
+                        Console.WriteLine("\n\nError: Input is not a valid number!\nPlease press any key to continue");
+                        Console.ReadKey();
+                    }
+
+                    
+
+                } while (!isValid);
+
                 return Double_output;
 
-                break;
-
             case 3:
+
                 char Char_output = 'a';
 
-                while (!isValid)
+                do
                 {
+                    Console.Clear();
                     Console.WriteLine(question);
                     string user_input = Console.ReadLine();
                     isValid = char.TryParse(user_input, out Char_output) && user_input.Length == 1;
-                }
-                return Char_output;
 
-                break;
+                    if (!isValid)
+                    {
+                        Console.WriteLine("\n\nError: Input is not a valid number!\nPlease press any key to continue");
+                        Console.ReadKey();
+                    }
+
+                    
+
+                } while (!isValid);
+
+                return Char_output;
             default:
                 return 0;
-                break;
         }
     }
 }
